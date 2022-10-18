@@ -4,6 +4,7 @@
   overflow: hidden;
   width: 2.25rem;
   height: 2.25rem;
+  outline: 2px solid var(--secondary);
 }
 
 .avatar > img {
