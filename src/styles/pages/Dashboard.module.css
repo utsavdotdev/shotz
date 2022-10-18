@@ -14,6 +14,7 @@
   gap: 2rem;
   width: min(550px, 100%);
   height: fit-content;
+  margin-top: 3rem;
 }
 .header {
   display: flex;
@@ -35,6 +36,7 @@
   flex-direction: column;
   gap: 2rem;
   width: 100%;
+  height: fit-content;
 }
 .input_con input[type="url"] {
   outline: 0;
@@ -108,19 +110,20 @@
 .option_con {
   display: flex;
   width: 100%;
-  gap: 3rem;
   flex-wrap: wrap;
+  height: fit-content;
+  gap: 0.5rem;
 }
 .check_con {
   display: flex;
   gap: 12px;
   align-items: center;
+  margin-right: 2rem;
 }
-.check_con .checkbox {
+.check_con .checkbox[type="checkbox"] {
   width: 20px;
   height: 20px;
   border-radius: 5px;
-  background-color: var(--bg1);
   opacity: 0.8;
   cursor: pointer;
 }
@@ -151,11 +154,28 @@
 .shot {
   font-size: 28px;
 }
+.more {
+  padding: 0.6rem 1rem;
+  color: var(--white);
+  font-weight: 400;
+  font-size: 18px;
+  background-color: var(--bg1);
+  width: fit-content;
+  border-radius: 4px;
+  opacity: 0.8;
+  cursor: pointer;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .main_con {
+    margin-top: 6rem;
   }
 }
