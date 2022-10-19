@@ -1,8 +1,8 @@
 import styles from "../styles/components/Layout.module.css";
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Outlet, Link, useNavigate, NavLink } from "react-router-dom";
 import { MdCamera } from "react-icons/md";
 import { IoLogOutOutline } from "react-icons/io5";
-import {AiOutlineGoogle} from "react-icons/ai"
+import { AiOutlineGoogle } from "react-icons/ai";
 import { useUserData } from "@nhost/react";
 import { useCallback } from "react";
 import { useSignOut } from "@nhost/react";
@@ -16,7 +16,7 @@ const Layout = ({ nhost }) => {
 
   const onLogout = useCallback(() => {
     signOut();
-    navigate("/");
+    window.location.reload();
   }, [navigate]);
   const handleGoogleSignIn = () => {
     nhost.auth.signIn({
@@ -38,6 +38,9 @@ const Layout = ({ nhost }) => {
           {user ? (
             <div className={styles.user}>
               <Avatar src={user?.avatarUrl} alt={user?.displayName} />
+              <NavLink to="/mycollection" className={styles.my}>
+                My Collection
+              </NavLink>
               <button onClick={onLogout}>
                 <IoLogOutOutline />
               </button>

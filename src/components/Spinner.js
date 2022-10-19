@@ -1,13 +1,12 @@
 import styles from '../styles/components/Spinner.module.css';
 
-import classNames from 'classnames';
-
-const Spinner = ({ size = '' }) => (
-  <span
-    className={classNames(
-      size === 'sm' ? styles['spinner-sm'] : styles.spinner
-    )}
-  />
+const Spinner = () => (
+  <div class={styles.lds_ring}>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 );
 
 export default Spinner;
