@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { NhostClient, NhostReactProvider } from "@nhost/react";
+import {NhostApolloProvider} from "@nhost/react-apollo"
 
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
@@ -16,6 +17,7 @@ function App() {
   return (
     <>
       <NhostReactProvider nhost={nhost}>
+        <NhostApolloProvider nhost={nhost}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout nhost={nhost} />}>
@@ -27,6 +29,7 @@ function App() {
           </Routes>
         </BrowserRouter>
         <Toaster />
+        </NhostApolloProvider>
       </NhostReactProvider>
     </>
   );

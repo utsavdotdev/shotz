@@ -6,6 +6,7 @@ import { saveAs } from "file-saver";
 import axios from "../config/axios.js";
 import Spinner from "../components/Spinner";
 import toast from "react-hot-toast";
+import { gql, useMutation } from "@apollo/client";
 
 const Image = () => {
   const location = useLocation();
@@ -28,6 +29,30 @@ const Image = () => {
     full_page,
     fresh,
   } = location.state;
+
+  const SAVE_IMG = gql`
+    mutation addImage($url: String, $user_id: String) {
+      insert_screenshot(objects: { url: $url, user_id: $user_id }) {
+        affected_rows
+      }
+    }
+  `;
+  const [addImage, { data, loading: load, error }] = useMutation(SAVE_IMG);
+
+  const saveImage = async () => {
+    try {
+      await addImage({
+        variables: {
+          url: res.uri,
+          user_id: user.id,
+        },
+      });
+      toast.success("Image saved to your collection");
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
 
   const getImage = async () => {
     try {
@@ -67,7 +92,7 @@ const Image = () => {
     saveAs(res?.uri, `image.${res?.type}`);
   };
 
-  if (loading) {
+  if (loading || load) {
     return (
       <>
         <div className={styles.load_con}>
@@ -82,12 +107,16 @@ const Image = () => {
         <title>App - Shotz</title>
       </Helmet>
       <div className={styles.image_con}>
-        <img src={res?.uri} alt="img"/>
+        <img src={res?.uri} alt="img" />
         <div className={styles.btn_con}>
-          <button className={styles.download} onClick={downloadImg}>
+          <button className={styles.download} onClick={() => downloadImg()}>
             Download
           </button>
-          {user && <button className={styles.save}>Save</button>}
+          {user && (
+            <button className={styles.save} onClick={() => saveImage()}>
+              Save
+            </button>
+          )}
         </div>
       </div>
     </>
