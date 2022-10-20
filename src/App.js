@@ -5,7 +5,6 @@ import {NhostApolloProvider} from "@nhost/react-apollo"
 
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
-import Profile from "./pages/Profile";
 import Image from "./pages/Image";
 import Collection from "./pages/Collection";
 
@@ -23,7 +22,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout nhost={nhost} />}>
               <Route index element={<Dashboard />} />
-              <Route path="profile" element={<Profile />} />
               <Route path="image" element={<Image />} />
               <Route path="mycollection" element={<Collection />} />
             </Route>

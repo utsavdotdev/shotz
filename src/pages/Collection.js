@@ -7,6 +7,7 @@ import { useUserData } from "@nhost/react";
 import { gql, useLazyQuery, useMutation } from "@apollo/client";
 import Spinner from "../components/Spinner";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const GET_IMAGES = gql`
   query getImages($user_id: String!) {
@@ -88,6 +89,9 @@ const Collection = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Collection - Shotz</title>
+      </Helmet>
       <div className={styles.collection_con}>
         <h2>Images</h2>
         <div className={styles.images_con}>

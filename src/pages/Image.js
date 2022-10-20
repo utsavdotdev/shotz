@@ -106,7 +106,7 @@ const Image = () => {
   return (
     <>
       <Helmet>
-        <title>App - Shotz</title>
+        <title>Image - Shotz</title>
       </Helmet>
       <div className={styles.image_con}>
         <img src={res?.uri} alt="img" />

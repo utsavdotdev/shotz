@@ -47,7 +47,7 @@ const Layout = ({ nhost }) => {
             <span>
               <MdCamera />
             </span>
-            <p>Shotz</p>
+            <p className={styles.logo_name}>Shotz</p>
           </div>
         </Link>
         <div className={styles.right}>
