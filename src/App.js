@@ -14,6 +14,7 @@ function App() {
     subdomain: process.env.REACT_APP_NHOST_SUBDOMAIN,
     region: process.env.REACT_APP_NHOST_REGION,
   });
+  console.log(process.env.REACT_APP_API_URL);
   return (
     <>
       <NhostReactProvider nhost={nhost}>

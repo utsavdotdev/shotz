@@ -1,9 +1,9 @@
 import react, { useState } from "react";
-import { useOutletContext,useNavigate } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { MdCamera } from "react-icons/md";
 import styles from "../styles/pages/Dashboard.module.css";
-import {toast} from "react-hot-toast"
+import { toast } from "react-hot-toast";
 
 const Dashboard = () => {
   const { user } = useOutletContext();
@@ -24,17 +24,22 @@ const Dashboard = () => {
     fresh: false,
   });
 
-  const sendUrl = () =>{
-      if(data.url === ""){
-          return toast.error("Please enter a URL",{id:"url"})
-      }
-      if(data.width === null && data.height || data.height === null && data.width){
-        return toast.error("Please enter both height and width",{id:"size"})
-      }
-      navigate("/image",{
-        state:data,
-      })
-  }
+  const sendUrl = () => {
+    if (data.url === "") {
+      setData({});
+      return toast.error("Please enter a URL", { id: "url" });
+    }
+    if (
+      (data.width === null && data.height) ||
+      (data.height === null && data.width)
+    ) {
+      setData({});
+      return toast.error("Please enter both height and width", { id: "size" });
+    }
+    navigate("/image", {
+      state: data,
+    });
+  };
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -57,6 +62,7 @@ const Dashboard = () => {
               name="url"
               value={data.url}
               onChange={handleChange}
+              required
             />
             <div className={styles.more} onClick={() => setMore(!more)}>
               {more ? "Hide" : "Show"} Advanced Option

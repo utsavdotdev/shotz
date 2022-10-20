@@ -48,6 +48,7 @@ const Image = () => {
         },
       });
       toast.success("Image saved to your collection");
+      window.location.reload();
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
@@ -81,12 +82,13 @@ const Image = () => {
       }
     } catch (error) {
       toast.error("Error in capturing image");
+      navigate("/");
     }
   };
 
   useEffect(() => {
     getImage();
-  }, [navigate]);
+  }, [url]);
 
   const downloadImg = () => {
     saveAs(res?.uri, `image.${res?.type}`);
